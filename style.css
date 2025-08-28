@@ -1,0 +1,105 @@
+:root{
+  --app-bg: radial-gradient(900px 900px at 10% 10%, rgba(255,255,255,0.06) 0%, transparent 60%),
+            linear-gradient(180deg, #0b1220 0%, #0e1630 100%);
+  --card:#ffffff14; --txt:#eef3ff; --muted:#b5c0d0; --accent:#8bc1ff;
+  --ok:#12b886; --warn:#fab005; --danger:#ff6b6b; --ring:#ffffff30; --border:#ffffff24;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--txt);
+  background: var(--app-bg); background-attachment: fixed; background-size: cover; background-position: center;
+  min-height:100vh;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Header */
+.app-header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(140%) blur(12px); background:#0b1220cc;
+  display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 20px; border-bottom:1px solid var(--border);
+}
+.brand{display:flex; align-items:center; gap:12px}
+.logo{width:44px; height:44px; border-radius:12px; background:conic-gradient(from 210deg, var(--accent), #6ea8fe, #b197fc, var(--accent)); display:grid; place-items:center; color:#0b1220; font-weight:800; box-shadow:0 10px 30px #0008}
+.titles h1{margin:0; font-size:1.05rem}
+.titles p{margin:.25rem 0 0; color:var(--muted); font-size:.9rem}
+.container{max-width:1100px; margin:0 auto; padding:20px}
+
+/* Cards / Form */
+.card{background:linear-gradient(180deg, #ffffff10, #ffffff06); border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:0 8px 30px #0006}
+.grid{display:grid; gap:14px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+.form-group{display:flex; flex-direction:column; gap:6px}
+label{color:var(--muted); font-size:.9rem}
+input,textarea,select{width:100%; background:#0f1830; border:1px solid var(--border); color:var(--txt); border-radius:12px; padding:12px; outline:0; transition:border .2s, box-shadow .2s}
+input:focus,textarea:focus,select:focus{border-color:var(--accent); box-shadow:0 0 0 4px var(--ring)}
+textarea{resize:vertical}
+.actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+.btn{border:1px solid var(--border); background:#121c36; color:var(--txt); padding:12px 16px; border-radius:12px; font-weight:700; cursor:pointer; transition:transform .06s ease, filter .2s}
+.btn:hover{filter:brightness(1.1)}
+.btn:active{transform:translateY(1px)}
+.btn.primary{background:var(--accent); border-color:transparent; color:#0b1220}
+.btn.success{background:var(--ok); border-color:transparent; color:#0b1220}
+.btn.warn{background:var(--warn); border-color:transparent; color:#0b1220}
+.btn.danger{background:var(--danger); border-color:transparent; color:#0b1220}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#ffffff18;border:1px solid var(--border);font-size:.85rem}
+.table{width:100%; border-collapse:collapse}
+.table th,.table td{padding:10px; border-bottom:1px solid var(--border); text-align:left; font-size:.95rem}
+.app-footer{padding:18px 22px; border-top:1px solid var(--border); color:var(--muted); text-align:center; margin-top:24px}
+
+/* Top-right profile + dropdown */
+.header-right{display:flex;align-items:center;gap:8px}
+.profile-chip{display:flex;align-items:center;gap:10px;background:#ffffff12;border:1px solid var(--border); padding:6px 10px;border-radius:999px;cursor:pointer;transition:filter .2s}
+.profile-chip:hover{filter:brightness(1.08)}
+.profile-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.profile-name{font-weight:700;font-size:.95rem;line-height:1}
+.role-badge{font-size:.72rem;opacity:.85;margin-left:6px;background:#ffffff16;border:1px solid var(--border);padding:2px 6px;border-radius:999px}
+.dropdown{position:absolute; top:60px; right:16px; min-width:280px; background:#101831; border:1px solid var(--border); border-radius:14px; box-shadow:0 18px 40px #0008; padding:12px; display:none; z-index:60}
+.dropdown.show{display:block}
+.dropdown .row{display:flex;gap:10px;align-items:center}
+.dropdown hr{border:none;border-top:1px solid var(--border);margin:10px 0}
+.dropdown .muted{color:var(--muted);font-size:.9rem}
+.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid var(--border);box-shadow:0 4px 18px #0009}
+
+/* Theme dialog */
+.theme-btn{display:inline-flex;align-items:center;gap:8px}
+dialog.theme{max-width:680px;width:92%; border:none; background:#0f1830; color:var(--txt); border-radius:16px; padding:0}
+dialog.theme::backdrop{background:#0008}
+.theme-h{padding:14px 16px;border-bottom:1px solid var(--border);font-weight:700}
+.theme-b{padding:16px;display:grid;gap:12px}
+.theme-f{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.swatch{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);cursor:pointer}
+.preview{border:1px dashed var(--border);border-radius:12px;height:120px;background:var(--app-bg);background-size:cover;background-position:center}
+
+
+  /* Botão flutuante para abrir o criador de PDF externo */
+  .fab-pdf {
+    position: fixed;
+    right: 18px;          /* ajuste para outro canto se quiser */
+    bottom: 18px;         /* top:18px para topo; left:18px para esquerda */
+    z-index: 9999;        /* acima de dialogs/menus */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    border-radius: 999px;
+    font: 600 14px/1 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #1f6feb;           /* azul suave; mude se preferir */
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(0,0,0,.28), 0 6px 12px rgba(0,0,0,.18);
+    transform: translateZ(0);      /* suaviza em mobile */
+  }
+  .fab-pdf:hover { filter: brightness(1.08); }
+  .fab-pdf:active { transform: scale(.98); }
+  .fab-pdf .ico {
+    width: 18px; height: 18px; display: inline-block;
+  }
+  @media (max-width: 480px) {
+    .fab-pdf { padding: 11px 12px; gap: 6px; }
+    .fab-pdf .label { display: none; } /* mantém só o ícone no celular */
+  }

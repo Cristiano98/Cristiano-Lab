@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Portal do Professor – OS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">OS</div>
+      <div class="titles">
+        <h1>Portal do Professor</h1>
+        <p>Recebimento, edição e PDFs de Ordens de Serviço</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button id="btnTema" class="btn theme-btn" title="Tema de fundo">🎨 Tema</button>
+
+      <div id="profChip" class="profile-chip" title="Perfil do professor">
+        <img id="profAvatar" class="profile-avatar" src="" alt="avatar">
+        <div>
+          <div class="profile-name" id="profNomeChip">Professor</div>
+          <span class="role-badge" id="profRole">Deslogado</span>
+        </div>
+      </div>
+
+      <div id="profDrop" class="dropdown">
+        <div class="row">
+          <img id="profDropAvatar" class="avatar" src="" alt="avatar">
+          <div>
+            <strong id="profDropNome">Professor</strong>
+            <div class="muted" id="profDropEmail">sem login</div>
+          </div>
+        </div>
+        <hr>
+        <div class="grid">
+          <div class="form-group"><label>Nome</label><input id="perfilNome" type="text"></div>
+          <div class="form-group"><label>E-mail</label><input id="perfilEmail" type="email"></div>
+          <div class="form-group"><label>Instituição/Unidade</label><input id="perfilInst" type="text" placeholder="Ex.: SENAI Taquaralto"></div>
+          <div class="form-group"><label>Bio</label><textarea id="perfilBio" rows="2"></textarea></div>
+          <div class="form-group"><label>Foto de Perfil (JPG/PNG)</label><input id="perfilFoto" type="file" accept="image/*"></div>
+          <div class="actions" style="margin:0">
+            <button class="btn success" id="btnSalvarPerfil">Salvar Perfil</button>
+            <button class="btn" id="btnSair">Sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Auth -->
+    <section id="authCard" class="card">
+      <h2 style="margin:6px 0 12px">Acesso</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Cadastro</h3>
+          <div class="grid">
+            <div class="form-group"><label>Nome</label><input id="regNome" type="text" placeholder="Seu nome"></div>
+            <div class="form-group"><label>E-mail (ou usuário)</label><input id="regEmail" type="text" placeholder="professor@exemplo.com"></div>
+            <div class="form-group"><label>Senha</label><input id="regSenha" type="password" placeholder="••••••••"></div>
+            <button class="btn primary" id="btnCadastrar">Cadastrar</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Entrar</h3>
+          <div class="grid">
+            <div class="form-group"><label>E-mail (ou usuário)</label><input id="logEmail" type="text"></div>
+            <div class="form-group"><label>Senha</label><input id="logSenha" type="password"></div>
+            <div class="actions" style="margin:0"><button class="btn success" id="btnEntrar">Entrar</button></div>
+            <p id="authMsg" class="muted"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App -->
+    <section id="app" class="card" style="display:none">
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Importar</h3>
+          <div class="grid">
+            <div class="form-group"><label>Pacote ZIP (PDF + JSON) do aluno</label><input id="zipInput" type="file" accept=".zip"></div>
+            <div class="form-group"><label>Importar via link/hash/payload</label><input id="linkInput" type="text" placeholder="cole o link OU #payload=... OU só o Base64"></div>
+            <div class="actions">
+              <button class="btn primary" id="btnImportZip">Importar ZIP</button>
+              <button class="btn" id="btnImportLink">Importar via Link/Hash</button>
+            </div>
+            <p id="impMsg" class="muted"></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Editar / Regerar PDF</h3>
+          <div class="grid">
+            <select id="selOS"></select>
+            <div class="grid grid-2">
+              <div class="form-group"><label>Nº OS</label><input id="f_numero" readonly></div>
+              <div class="form-group"><label>Data</label><input id="f_data"></div>
+            </div>
+            <div class="grid grid-2">
+              <div class="form-group"><label>Solicitante</label><input id="f_solicitante"></div>
+              <div class="form-group"><label>Técnico</label><input id="f_tecnico"></div>
+            </div>
+            <div class="form-group"><label>Local</label><input id="f_local"></div>
+            <div class="form-group"><label>Descrição</label><textarea id="f_descricao" rows="3"></textarea></div>
+            <div class="form-group"><label>Equip./Ferramentas</label><input id="f_ferramentas"></div>
+            <div class="grid grid-2">
+              <div class="form-group"><label>Peças</label><input id="f_pecas"></div>
+              <div class="form-group"><label>Problemas/Soluções</label><textarea id="f_problemas" rows="2"></textarea></div>
+            </div>
+            <div class="form-group"><label>Observações</label><textarea id="f_observacoes" rows="2"></textarea></div>
+            <div class="actions">
+              <button class="btn success" id="btnSalvarOS">Salvar alterações</button>
+              <button class="btn primary" id="btnBaixarPDF">Baixar PDF</button>
+              <button class="btn danger" id="btnExcluirOS">Excluir</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Lista</h3>
+        <table class="table">
+          <thead><tr><th>Nº</th><th>Data</th><th>Solicitante</th><th>Técnico</th><th>Ações</th></tr></thead>
+        <tbody id="tbl"></tbody>
+        </table>
+        <p class="muted">Tudo salvo localmente no seu navegador.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">© 2025 • Portal do Professor • SENAI Taquaralto</footer>
+
+  <!-- Dialog Tema -->
+  <dialog id="dlgTema" class="theme">
+    <div class="theme-h">Tema de Fundo</div>
+    <div class="theme-b">
+      <div class="grid grid-2">
+        <div class="card">
+          <h4 style="margin:0 0 8px">Cor</h4>
+          <input id="themeColor" type="color" value="#0b1220">
+          <div style="height:8px"></div>
+          <div class="swatches">
+            <div class="swatch" data-c="#0b1220" style="background:#0b1220"></div>
+            <div class="swatch" data-c="#101936" style="background:#101936"></div>
+            <div class="swatch" data-c="#1b2838" style="background:#1b2838"></div>
+            <div class="swatch" data-c="#14213d" style="background:#14213d"></div>
+            <div class="swatch" data-c="#0f766e" style="background:#0f766e"></div>
+            <div class="swatch" data-c="#3f2e56" style="background:#3f2e56"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h4 style="margin:0 0 8px">Imagem</h4>
+          <div class="form-group"><label>Upload</label><input id="themeImageFile" type="file" accept="image/*"></div>
+          <div class="form-group"><label>URL</label><input id="themeImageUrl" type="url" placeholder="https://..."></div>
+          <div class="form-group"><label>Ajuste</label>
+            <select id="themeFit">
+              <option value="cover">Cobrir (recomendado)</option>
+              <option value="contain">Conter</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="preview" id="themePreview"></div>
+      <small class="muted">Dica: combine cor/imagem com o overlay do cabeçalho.</small>
+    </div>
+    <div class="theme-f">
+      <button class="btn" id="btnTemaReset">Padrão</button>
+      <button class="btn success" id="btnTemaSalvar">Salvar</button>
+      <button class="btn" id="btnTemaFechar">Fechar</button>
+    </div>
+  </dialog>
+
+  <a
+  id="pdfCreatorFab"
+  class="fab-pdf"
+  href="aluno-os.html"
+  target="_blank"
+  rel="noopener"
+  aria-label="Abrir Criador de PDF"
+  title="Abrir Criador de PDF"
+>
+  <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="currentColor"
+      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm0 2.5L18.5 9H14zM8 12h8v1.5H8zm0 4h6v1.5H8z"/>
+  </svg>
+  <span class="label">Criador de PDF</span>
+</a>
+
+
+  <!-- libs e app JS no fim -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="professor.js"></script>
+</body>
+</html>

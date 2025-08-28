@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sistema OS</title>
+    <link rel="stylesheet" href="stylePdf.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body id="body" style="transition: 0.2s;">
+    <h1 id="pdfsSalvos">PDFs Salvos</h1>
+
+    <a class="btn" id="btnCriarPdf" style="background-color: rgb(107, 104, 104); border: solid black 2px; color: white; transition: 0.3s;" href="SistemaOS/aluno-os.html" onclick="redirecionar()">Criar Novo PDF</a>
+
+    <div id="caixa">
+      <input type="email" id="inputEmail" placeholder="Digite o email" required>
+      <button type="submit" onclick="enviarEmail()">enviar</button>
+    </div>  
+
+
+    <div id="caixaPdf"></div>
+
+    
+    <script src="scriptPdf.js"></script>
+    <script>
+      const btnCriarPdf = document.getElementById("btnCriarPdf");
+
+      btnCriarPdf.onclick = function() {
+        document.getElementById("body").style.scale = "0";
+      }
+
+      function redirecionar() {
+        window.location.href = "Documentos/Site_OS/SistemaOS.html";
+      }
+
+    </script>
+  </body>
+</html>

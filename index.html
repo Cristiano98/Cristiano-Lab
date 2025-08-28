@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Sistema de Ordem de Serviço</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fundo animado -->
+  <div class="bg-animated" aria-hidden="true"></div>
+
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">OS</div>
+      <div class="titles">
+        <h1>Sistema de Ordem de Serviço</h1>
+        <p>Registro oficial de serviços técnicos</p>
+      </div>
+    </div>
+
+    <!-- Controle inovador: troca de cor/acento em 1 clique -->
+    <div class="accent-picker" role="group" aria-label="Trocar cor do tema">
+      <button class="accent" data-accent="blue" aria-label="Azul"></button>
+      <button class="accent" data-accent="purple" aria-label="Roxo"></button>
+      <button class="accent" data-accent="teal" aria-label="Ciano/Verde"></button>
+      <button class="accent" data-accent="amber" aria-label="Âmbar"></button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card glass">
+      <h2>Formulário de Ordem de Serviço</h2>
+
+      <form id="osForm" novalidate>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="numeroOS">Nº da OS</label>
+            <div class="field">
+              <input id="numeroOS" type="text" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="dataOS">Data</label>
+            <div class="field">
+              <input id="dataOS" type="text" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="solicitante">Solicitante</label>
+            <div class="field">
+              <input id="solicitante" type="text" placeholder="Nome do solicitante" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tecnico">Técnico Responsável</label>
+            <div class="field">
+              <input id="tecnico" type="text" placeholder="Nome do técnico" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="local">Local do Serviço</label>
+          <div class="field">
+            <input id="local" type="text" placeholder="Ex.: Laboratório 2 / Sala 05" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="descricao">Descrição do Serviço</label>
+          <div class="field">
+            <textarea id="descricao" rows="4" placeholder="Explique o que será realizado" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ferramentas">Equipamentos/Ferramentas Utilizadas</label>
+          <div class="field">
+            <input id="ferramentas" type="text" placeholder="Ex.: Multímetro, chave Phillips, notebook...">
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label for="pecas">Peças Substituídas</label>
+            <div class="field">
+              <input id="pecas" type="text" placeholder="Ex.: HD 1TB, Pasta térmica, Cabo...">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="problemas">Problemas Encontrados e Soluções</label>
+            <div class="field">
+              <textarea id="problemas" rows="3" placeholder="Relate o diagnóstico e a correção"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="observacoes">Observações</label>
+          <div class="field">
+            <textarea id="observacoes" rows="3" placeholder="Informações adicionais relevantes"></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn primary" id="btnGerarPdf">Gerar PDF</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    © 2025 • Sistema de Ordem de Serviço • SENAI Taquaralto
+  </footer>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
